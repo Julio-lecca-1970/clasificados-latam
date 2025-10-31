@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClasificadosLatam</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            color: #8b0000;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .location-selector {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        
+        .location-selector label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .location-selector select {
+            padding: 8px 15px;
+            font-size: 1em;
+            border: 1px solid #999;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .category-section {
+            background-color: #fafafa;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .category-section h2 {
+            font-size: 1.3em;
+            color: #000;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 8px;
+        }
+        
+        .category-section ul {
+            list-style: none;
+        }
+        
+        .category-section li {
+            margin: 8px 0;
+        }
+        
+        .category-section a {
+            color: #00008b;
+            text-decoration: none;
+            font-size: 0.95em;
+        }
+        
+        .category-section a:hover {
+            text-decoration: underline;
+            color: #8b0000;
+        }
+        
+        .post-ad-btn {
+            display: inline-block;
+            background-color: #8b0000;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 20px 0;
+            cursor: pointer;
+            border: none;
+            font-size: 1em;
+        }
+        
+        .post-ad-btn:hover {
+            background-color: #a00000;
+        }
+        
+        .search-box {
+            margin: 20px 0;
+        }
+        
+        .search-box input {
+            padding: 10px;
+            width: 70%;
+            border: 1px solid #999;
+            border-radius: 3px;
+            font-size: 1em;
+        }
+        
+        .search-box button {
+            padding: 10px 20px;
+            background-color: #8b0000;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-left: 10px;
+        }
+        
+        .search-box button:hover {
+            background-color: #a00000;
+        }
+        
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-box input {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            
+            .search-box button {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ClasificadosLatam</h1>
+        <p class="subtitle">Anuncios clasificados gratuitos para toda Latinoamérica</p>
+        
+        <div class="location-selector">
+            <label for="country">Selecciona tu país:</label>
+            <select id="country">
+                <option value="">-- Todos los países --</option>
+                <option value="ar">Argentina</option>
+                <option value="bo">Bolivia</option>
+                <option value="br">Brasil</option>
+                <option value="cl">Chile</option>
+                <option value="co">Colombia</option>
+                <option value="cr">Costa Rica</option>
+                <option value="cu">Cuba</option>
+                <option value="ec">Ecuador</option>
+                <option value="sv">El Salvador</option>
+                <option value="gt">Guatemala</option>
+                <option value="hn">Honduras</option>
+                <option value="mx">México</option>
+                <option value="ni">Nicaragua</option>
+                <option value="pa">Panamá</option>
+                <option value="py">Paraguay</option>
+                <option value="pe">Perú</option>
+                <option value="do">República Dominicana</option>
+                <option value="uy">Uruguay</option>
+                <option value="ve">Venezuela</option>
+            </select>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar en los anuncios...">
+            <button onclick="searchAds()">Buscar</button>
+        </div>
+        
+        <button class="post-ad-btn" onclick="postAd()">Publicar Anuncio Gratis</button>
+    </header>
+    
+    <main class="main-content">
+        <div class="category-section">
+            <h2>🏠 Vivienda</h2>
+            <ul>
+                <li><a href="#">Apartamentos en alquiler</a></li>
+                <li><a href="#">Apartamentos en venta</a></li>
+                <li><a href="#">Casas en alquiler</a></li>
+                <li><a href="#">Casas en venta</a></li>
+                <li><a href="#">Habitaciones</a></li>
+                <li><a href="#">Inmuebles comerciales</a></li>
+                <li><a href="#">Terrenos</a></li>
+                <li><a href="#">Busco compañero de piso</a></li>
+            </ul>
+        </div>
+        
+        <div class="category-section">
+            <h2>💼 Empleos</h2>
+            <ul>
+                <li><a href="#">Ofertas de empleo</a></li>
+                <li><a href="#">Trabajo remoto</a></li>
+                <li><a href="#">Medio tiempo</a></li>
+                <li><a href="#">Tiempo completo</a></li>
+                <li><a href="#">Freelance / Autónomos</a></li>
+                <li><a href="#">Prácticas profesionales</a></li>
+                <li><a href="#">Busco empleo</a></li>
+            </ul>
+        </div>
+        
+        <div class="category-section">
+            <h2>🛒 Artículos en Venta</h2>
+            <ul>
+                <li><a href="#">Electrónica</a></li>
+                <li><a href="#">Muebles</a></li>
+                <li><a href="#">Ropa y accesorios</a></li>
+                <li><a href="#">Electrodomésticos</a></li>
+                <li><a href="#">Deportes</a></li>
+                <li><a href="#">Libros</a></li>
+                <li><a href="#">Juguetes y juegos</a></li>
+                <li><a href="#">Otros artículos</a></li>
+            </ul>
+        </div>
+        
+        <div class="category-section">
+            <h2>🚗 Vehículos</h2>
+            <ul>
+                <li><a href="#">Autos</a></li>
+                <li><a href="#">Motos</a></li>
+                <li><a href="#">Camiones</a></li>
+                <li><a href="#">Piezas y accesorios</a></li>
+                <li><a href="#">Bicicletas</a></li>
+                <li><a href="#">Barcos</a></li>
+            </ul>
+        </div>
+        
+        <div class="category-section">
+            <h2>🔧 Servicios</h2>
+            <ul>
+                <li><a href="#">Limpieza</a></li>
+                <li><a href="#">Reparaciones</a></li>
+                <li><a href="#">Clases particulares</a></li>
+                <li><a href="#">Belleza y salud</a></li>
+                <li><a href="#">Eventos</a></li>
+                <li><a href="#">Mudanzas</a></li>
+                <li><a href="#">Profesionales</a></li>
+                <li><a href="#">Otros servicios</a></li>
+            </ul>
+        </div>
+        
+        <div class="category-section">
+            <h2>👥 Comunidad</h2>
+            <ul>
+                <li><a href="#">Eventos locales</a></li>
+                <li><a href="#">Actividades</a></li>
+                <li><a href="#">Grupos</a></li>
+                <li><a href="#">Voluntariado</a></li>
+                <li><a href="#">Objetos perdidos</a></li>
+                <li><a href="#">Mascotas</a></li>
+                <li><a href="#">Gratis</a></li>
+            </ul>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 ClasificadosLatam - Todos los derechos reservados</p>
+        <p><a href="#" style="color: #00008b;">Términos de uso</a> | <a href="#" style="color: #00008b;">Privacidad</a> | <a href="#" style="color: #00008b;">Contacto</a></p>
+    </footer>
+    
+    <script>
+        function postAd() {
+            alert('Esta función te llevaría a un formulario para publicar tu anuncio. Por ahora es una demo.');
+        }
+        
+        function searchAds() {
+            const searchTerm = document.getElementById('searchInput').value;
+            if (searchTerm.trim() !== '') {
+                alert('Buscando: ' + searchTerm + '\n\nEsta es una demo. En un sitio real, esto buscaría en la base de datos.');
+            } else {
+                alert('Por favor ingresa un término de búsqueda.');
+            }
+        }
+        
+        document.getElementById('country').addEventListener('change', function() {
+            const country = this.options[this.selectedIndex].text;
+            if (this.value !== '') {
+                alert('Has seleccionado: ' + country + '\n\nEn un sitio real, esto filtraría los anuncios por país.');
+            }
+        });
+        
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchAds();
+            }
+        });
+    </script>
+</body>
+</html>
